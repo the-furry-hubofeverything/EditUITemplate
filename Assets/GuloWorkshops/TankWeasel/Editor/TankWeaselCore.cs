@@ -6,19 +6,20 @@ using System.Linq;
 using System;
 using System.IO;
 
-namespace ExampleDev.ExamplePackage
+namespace GuloWorkshops.TankWeasel
 {
     [InitializeOnLoad]
-    public class ExamplePackageCore : MonoBehaviour
+    public class TankWeaselCore : MonoBehaviour
     {
-        public static Version Version = new Version(0, 1, 0);
+        public static Version Version = new Version(1, 0, 1);
 
         /// <summary>
         /// Static Constructor to register events and perform OOBE
         /// </summary>
-        static ExamplePackageCore()
+        static TankWeaselCore()
         {
             LoadAutoState();
+            Debug.Log(GuloWorkshops.TankWeasel.TankWeaselCore.Version);
             if (AlwaysShow && !EditorApplication.isPlaying)
             {
                 EditorApplication.update -= ShowAboutWindow;
@@ -26,11 +27,11 @@ namespace ExampleDev.ExamplePackage
             }
         }
 
-        [MenuItem("ExampleDev/Example Package/Perform Action", false, 100)]
+        [MenuItem("Gulo Workshops/Tank Weasel/Perform Action", false, 100)]
         public static void DoAction()
         {
             EditorUtility.DisplayDialog(
-                "Example Package", 
+                "Tank Weasel", 
                 "You just clicked a menu item. This could be used to perform some action.",
                 "OK"
                 );
@@ -40,7 +41,7 @@ namespace ExampleDev.ExamplePackage
         {
             if (PackageHunter.IsFileGuidPresent(targetGUID))
             {
-                var assetPath = Application.dataPath + AssetDatabase.GUIDToAssetPath(targetGUID).Substring(6);
+                var assetPath = "https://avatardocs.gulo.dev";
                 Debug.Log("Opening " + assetPath + "...");
 
                 Application.OpenURL(assetPath);
@@ -48,7 +49,7 @@ namespace ExampleDev.ExamplePackage
             else
             {
                 EditorUtility.DisplayDialog(
-                    "Example Package",
+                    "Tank Weasel",
                     "Sorry but Unity was unable to find the document! You may need to reinstall the package.",
                     "OK"
                 );
@@ -58,12 +59,12 @@ namespace ExampleDev.ExamplePackage
         /// <summary>
         /// Displays About box
         /// </summary>
-        [MenuItem("ExampleDev/Example Package/About Example", false, 112)]
+        [MenuItem("Gulo Workshops/Tank Weasel/About Example", false, 112)]
         static void ShowAboutWindow()
         {
             EditorApplication.update -= ShowAboutWindow;
 
-            var window = (ExampleWindow)EditorWindow.GetWindow(typeof(ExampleWindow), true, "Example Package - About");
+            var window = (InfoWindow)EditorWindow.GetWindow(typeof(InfoWindow), true, "Tank Weasel - About");
 
             var width = UIHelpers.AboutWindowWidth + 20;
             var height = 850;
@@ -95,7 +96,7 @@ namespace ExampleDev.ExamplePackage
 
         private static string GetSettingsPath()
         {
-            return Path.Combine(new DirectoryInfo(Application.dataPath).Parent?.FullName, "ProjectSettings", "ExampleDev-ExamplePackage");
+            return Path.Combine(new DirectoryInfo(Application.dataPath).Parent?.FullName, "ProjectSettings", "GuloWorkshops-TankWeasel");
         }
 
         private static void EnsurePathExists()
@@ -111,7 +112,7 @@ namespace ExampleDev.ExamplePackage
         private static void SaveAutoState()
         {
             EnsurePathExists();
-            var settings = new ExamplePackageSettings() { AlwaysShow = m_AlwaysShow };
+            var settings = new TankWeaselSettings() {AlwaysShow = m_AlwaysShow};
             var json = JsonUtility.ToJson(settings);
             File.WriteAllText(Path.Combine(GetSettingsPath(), settingsFilename), json);
         }
@@ -122,16 +123,26 @@ namespace ExampleDev.ExamplePackage
             var path = Path.Combine(GetSettingsPath(), settingsFilename);
             if (File.Exists(path))
             {
-                var settings = new ExamplePackageSettings();
+                var settings = new TankWeaselSettings();
                 EditorJsonUtility.FromJsonOverwrite(File.ReadAllText(path), settings);
-                m_AlwaysShow = settings.AlwaysShow;
+                if (settings.LastVersion != GuloWorkshops.TankWeasel.TankWeaselCore.Version.ToString())
+                {
+                    m_AlwaysShow = true;
+                    settings.AlwaysShow = true;
+                    settings.LastVersion = GuloWorkshops.TankWeasel.TankWeaselCore.Version.ToString();
+                    var json = JsonUtility.ToJson(settings);
+                    File.WriteAllText(path, json);
+                } else {
+                    m_AlwaysShow = settings.AlwaysShow;
+                }
             }
         }
     }
 
-    public class ExamplePackageSettings
+    public class TankWeaselSettings
     {
         public bool AlwaysShow = true;
+        public string LastVersion = GuloWorkshops.TankWeasel.TankWeaselCore.Version.ToString();
     }
 }
 #endif

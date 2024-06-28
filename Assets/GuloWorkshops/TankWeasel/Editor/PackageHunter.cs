@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEditor;
 
-namespace ExampleDev.ExamplePackage
+namespace GuloWorkshops.TankWeasel
 {
     public static class PackageHunter
     {

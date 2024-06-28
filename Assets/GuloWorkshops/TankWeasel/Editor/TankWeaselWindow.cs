@@ -7,9 +7,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-namespace ExampleDev.ExamplePackage
+namespace GuloWorkshops.TankWeasel
 {
-    public class ExampleWindow : EditorWindow
+    public class InfoWindow : EditorWindow
     {
         /// <summary>
         /// Package Logo
@@ -52,7 +52,7 @@ namespace ExampleDev.ExamplePackage
             windowScrollPosition = GUILayout.BeginScrollView(windowScrollPosition);
             var defaultColor = GUI.backgroundColor;
             GUI.backgroundColor = Color.clear;
-            var headContent = new GUIContent("Example Package", Logo);
+            var headContent = new GUIContent("Tank Weasel", Logo);
             GUILayout.BeginVertical(EditorStyles.inspectorFullWidthMargins);
                 UIHelpers.BeginCenter();
                     GUILayout.Box(Logo, GUILayout.Width(160), GUILayout.Height(160));
@@ -61,7 +61,7 @@ namespace ExampleDev.ExamplePackage
                     GUILayout.Label(headContent, headStyle);
                 UIHelpers.EndCenter();
                 UIHelpers.BeginCenter();
-                    GUILayout.Label("vs. " + ExamplePackageCore.Version.ToString(), descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("vs. " + TankWeaselCore.Version.ToString(), descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                 UIHelpers.EndCenter();
 
                 GUI.backgroundColor = defaultColor;
@@ -71,7 +71,7 @@ namespace ExampleDev.ExamplePackage
 
                 GUILayout.Label("Welcome message about the package here", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                 GUILayout.Label("Click a button below to get started or you can come back later using the menu bar under:", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
-                GUILayout.Label("ExampleDev > Example Package > About", instructionsCentreStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                GUILayout.Label("Gulo Workshops > Tank Weasel > About", instructionsCentreStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
 
                 GUILayout.FlexibleSpace();
                 UIHelpers.DrawUILine(GUI.color);
@@ -102,7 +102,7 @@ namespace ExampleDev.ExamplePackage
                     UIHelpers.BeginCenter();
                         if (GUILayout.Button(new GUIContent("      Open the README file", SmallIcon), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
                         {
-                            ExamplePackageCore.OpenSupportFile(PackageHunter.ReadmeGUID);
+                            TankWeaselCore.OpenSupportFile(PackageHunter.ReadmeGUID);
                         }
                     UIHelpers.EndCenter();
                 }
@@ -151,14 +151,14 @@ namespace ExampleDev.ExamplePackage
                 EditorGUILayout.BeginHorizontal();
                     GUILayout.FlexibleSpace();
                     EditorGUI.BeginChangeCheck();
-                        bool showStartup = ExamplePackageCore.AlwaysShow;
+                        bool showStartup = TankWeaselCore.AlwaysShow;
                         float originalValue = EditorGUIUtility.labelWidth;
                         EditorGUIUtility.labelWidth = 240;
                         showStartup = !EditorGUILayout.Toggle("Don't show this window when Unity starts", !showStartup);
                         EditorGUIUtility.labelWidth = originalValue;
                     if (EditorGUI.EndChangeCheck())
                     {
-                        ExamplePackageCore.AlwaysShow = showStartup;
+                        TankWeaselCore.AlwaysShow = showStartup;
                     }
                 EditorGUILayout.EndHorizontal();
 

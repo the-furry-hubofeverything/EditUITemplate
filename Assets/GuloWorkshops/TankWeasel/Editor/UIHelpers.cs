@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace ExampleDev.ExamplePackage
+namespace GuloWorkshops.TankWeasel
 {
     internal static class UIHelpers
     {
