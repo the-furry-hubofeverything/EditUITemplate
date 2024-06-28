@@ -1,8 +1,3 @@
-Unity Editor Window Template
-
-This package includes an example template for setting up a custom editor window for distribution with a Unity package, providing a starting point for creating a custom Editor user interface. It may be used and edited as required by the package creator.
-
-
 The original example is covered by the following software license:
 
 Copyright (c) 2024 Nidonocu

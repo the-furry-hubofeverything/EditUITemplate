@@ -18,11 +18,19 @@ namespace GuloWorkshops.TankWeasel
 
         Texture SmallIcon;
 
+        Texture GuloWorkshopsLogo;
+        
+        Texture GuloWorkshopsSmallLogo;
+
+        Texture Github;
+
+        Texture Kofi;
+
         public bool VRCFuryInstalled = true;
 
-        public bool ReadMeAssetReady = true;
+        // public bool ReadMeAssetReady = true;
 
-        public bool ShaderReady = true;
+        // public bool ShaderReady = true;
 
         /// <summary>
         /// Window's vertical scroll position
@@ -41,8 +49,12 @@ namespace GuloWorkshops.TankWeasel
         /// </summary>
         private void OnEnable()
         {
-            Logo = Resources.Load<Texture>("Unknown256");
-            SmallIcon = Resources.Load<Texture>("Unknown32");
+            Logo = Resources.Load<Texture>("Smug");
+            SmallIcon = Resources.Load<Texture>("Smug32");
+            GuloWorkshopsLogo = Resources.Load<Texture>("GuloWorkshopsLogo");
+            GuloWorkshopsSmallLogo = Resources.Load<Texture>("GuloWorkshopsLogo32");
+            Github = Resources.Load<Texture>("github-mark-white");
+            Kofi = Resources.Load<Texture>("KofiLogo");
         }
 
         void OnGUI()
@@ -61,7 +73,7 @@ namespace GuloWorkshops.TankWeasel
                     GUILayout.Label(headContent, headStyle);
                 UIHelpers.EndCenter();
                 UIHelpers.BeginCenter();
-                    GUILayout.Label("vs. " + TankWeaselCore.Version.ToString(), descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("v. " + TankWeaselCore.Version.ToString(), descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                 UIHelpers.EndCenter();
 
                 GUI.backgroundColor = defaultColor;
@@ -69,14 +81,14 @@ namespace GuloWorkshops.TankWeasel
 
                 GUILayout.FlexibleSpace();
 
-                GUILayout.Label("Welcome message about the package here", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                GUILayout.Label("Thank you for purchasing the Tank Weasel!", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                 GUILayout.Label("Click a button below to get started or you can come back later using the menu bar under:", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                 GUILayout.Label("Gulo Workshops > Tank Weasel > About", instructionsCentreStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
 
                 GUILayout.FlexibleSpace();
                 UIHelpers.DrawUILine(GUI.color);
 
-                GUILayout.Label("Section 1 Heading", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                GUILayout.Label("Install VRCFury", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
 
                 if (VRCFuryInstalled)
                 {
@@ -88,46 +100,60 @@ namespace GuloWorkshops.TankWeasel
                 {
                     EditorGUILayout.HelpBox("VRC Fury is not currently installed! You'll need to install it first using the Creator Companion!", MessageType.Warning);
                     UIHelpers.BeginCenter();
-                    if (GUILayout.Button(new GUIContent("      Click here and follow the instructions to install VRC Fury", Logo), GUILayout.Height(48), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                    if (GUILayout.Button(new GUIContent("      Click here and follow the instructions to install VRC Fury", SmallIcon), GUILayout.Height(48), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
                     {
                         Application.OpenURL(UIHelpers.VRCFuryDownloadURL);
                     }
                     UIHelpers.EndCenter();
                 }
+                GUILayout.FlexibleSpace();
 
-                GUILayout.Label("Section 2 Heading", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                GUILayout.Label("Documentation", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
 
-                if (ReadMeAssetReady)
+                // We're using a website, so file check not needed
+                GUILayout.Label("Please read the documentation, there's a lot of useful information, and this avatar may be different from what you're used to.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                GUILayout.Label("The online documentation page also has a place to submit bug reports, and is actively updated.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+
+                // if (ReadMeAssetReady)
+                // {
+                UIHelpers.BeginCenter();
+                if (GUILayout.Button(new GUIContent("      Online Documentation and issue tracking", Github), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
                 {
-                    UIHelpers.BeginCenter();
-                        if (GUILayout.Button(new GUIContent("      Open the README file", SmallIcon), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
-                        {
-                            TankWeaselCore.OpenSupportFile(PackageHunter.ReadmeGUID);
-                        }
-                    UIHelpers.EndCenter();
-                }
-                else
-                {
-                    EditorGUILayout.HelpBox("Oh dear! I can't find the file! You may need to reinstall this package!", MessageType.Error);
+                    Application.OpenURL("https://avatardocs.gulo.dev");
                 }
 
-                GUILayout.Label("Section 3 Heading", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                // Insert video documentation here if finished
 
-                if (ShaderReady)
-                {
-                    UIHelpers.BeginCenter();
-                        GUILayout.Label(new GUIContent("Poiyomi is installed and ready to use.", UIHelpers.ShaderIcon), instructionsCentreStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
-                    UIHelpers.EndCenter();
-                }
-                else
-                {
-                    EditorGUILayout.HelpBox("Poiyomi is not currently installed! You'll need to install it first using the Creator Companion!", MessageType.Warning);
-                }
+                // if (GUILayout.Button(new GUIContent("      Online Documentation and issue tracking", SmallIcon), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                // {
+                //     TankWeaselCore.OpenSupportFile("");
+                // }
+                UIHelpers.EndCenter();
+                // }
+                // else
+                // {
+                //     EditorGUILayout.HelpBox("Oh dear! I can't find the file! You may need to reinitialize this project!", MessageType.Error);
+                // }
+
+                // The Tank Weasel doesn't have a Poiyomi dependency
+
+                // GUILayout.Label("Section 3 Heading", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+
+                // if (ShaderReady)
+                // {
+                //     UIHelpers.BeginCenter();
+                //         GUILayout.Label(new GUIContent("Poiyomi is installed and ready to use.", UIHelpers.ShaderIcon), instructionsCentreStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                //     UIHelpers.EndCenter();
+                // }
+                // else
+                // {
+                //     EditorGUILayout.HelpBox("Poiyomi is not currently installed! You'll need to install it first using the Creator Companion!", MessageType.Warning);
+                // }
 
                 GUILayout.FlexibleSpace();
 
                 UIHelpers.BeginCenter();
-                    if (GUILayout.Button(new GUIContent("       Go to the product website", SmallIcon, UIHelpers.PackageURL), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                    if (GUILayout.Button(new GUIContent("Go to the Gumroad Page", null, UIHelpers.PackageURL), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
                     {
                         Application.OpenURL(UIHelpers.PackageURL);
                     }
@@ -136,12 +162,18 @@ namespace GuloWorkshops.TankWeasel
 
                 GUILayout.BeginVertical();
                     UIHelpers.BeginCenter();
-                        GUILayout.Label("Developed by", descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                        GUILayout.Label("Made with <3 by", descStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
                     UIHelpers.EndCenter();
                     UIHelpers.BeginCenter();
-                        if (GUILayout.Button(new GUIContent("      Dev Name", SmallIcon, UIHelpers.ProfileURL), GUILayout.Height(48), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                        if (GUILayout.Button(new GUIContent("      Hubble the Wolverine", GuloWorkshopsSmallLogo, UIHelpers.ProfileURL), GUILayout.Height(48), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
                         {
                             Application.OpenURL(UIHelpers.ProfileURL);
+                        }
+                    UIHelpers.EndCenter();
+                    UIHelpers.BeginCenter();
+                        if (GUILayout.Button(new GUIContent("      Buy me a Ko-Fi!", Kofi, UIHelpers.ProfileURL), GUILayout.Height(48), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                        {
+                            Application.OpenURL("https://ko-fi.com/hubofeverything");
                         }
                     UIHelpers.EndCenter();
                     GUILayout.Space(20f);

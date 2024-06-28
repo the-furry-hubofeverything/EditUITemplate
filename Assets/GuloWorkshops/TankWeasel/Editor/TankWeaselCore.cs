@@ -11,7 +11,7 @@ namespace GuloWorkshops.TankWeasel
     [InitializeOnLoad]
     public class TankWeaselCore : MonoBehaviour
     {
-        public static Version Version = new Version(1, 0, 1);
+        public static Version Version = new Version(1, 0, 0);
 
         /// <summary>
         /// Static Constructor to register events and perform OOBE
@@ -27,39 +27,39 @@ namespace GuloWorkshops.TankWeasel
             }
         }
 
-        [MenuItem("Gulo Workshops/Tank Weasel/Perform Action", false, 100)]
-        public static void DoAction()
-        {
-            EditorUtility.DisplayDialog(
-                "Tank Weasel", 
-                "You just clicked a menu item. This could be used to perform some action.",
-                "OK"
-                );
-        }
+        // [MenuItem("Gulo Workshops/Tank Weasel/Perform Action", false, 100)]
+        // public static void DoAction()
+        // {
+        //     EditorUtility.DisplayDialog(
+        //         "Tank Weasel", 
+        //         "You just clicked a menu item. This could be used to perform some action.",
+        //         "OK"
+        //         );
+        // }
 
         public static void OpenSupportFile(string targetGUID)
         {
-            if (PackageHunter.IsFileGuidPresent(targetGUID))
-            {
-                var assetPath = "https://avatardocs.gulo.dev";
-                Debug.Log("Opening " + assetPath + "...");
+            // if ()
+            // {
+            var assetPath = "https://avatardocs.gulo.dev";
+            Debug.Log("Opening " + assetPath + "...");
 
-                Application.OpenURL(assetPath);
-            }
-            else
-            {
-                EditorUtility.DisplayDialog(
-                    "Tank Weasel",
-                    "Sorry but Unity was unable to find the document! You may need to reinstall the package.",
-                    "OK"
-                );
-            }
+            Application.OpenURL(assetPath);
+        //     }
+        //     else
+        //     {
+        //         EditorUtility.DisplayDialog(
+        //             "Tank Weasel",
+        //             "Sorry but Unity was unable to find the document! You may need to reinitialize the project.",
+        //             "OK"
+        //         );
+        //     }
         }
 
         /// <summary>
         /// Displays About box
         /// </summary>
-        [MenuItem("Gulo Workshops/Tank Weasel/About Example", false, 112)]
+        [MenuItem("Gulo Workshops/Tank Weasel/About", false, 112)]
         static void ShowAboutWindow()
         {
             EditorApplication.update -= ShowAboutWindow;
@@ -74,9 +74,9 @@ namespace GuloWorkshops.TankWeasel
 
             window.VRCFuryInstalled = PackageHunter.IsPackageInstalled(PackageHunter.VRCFuryPackageName);
 
-            window.ReadMeAssetReady = PackageHunter.IsFileGuidPresent(PackageHunter.ReadmeGUID);
+            // window.ReadMeAssetReady = PackageHunter.IsFileGuidPresent(PackageHunter.ReadmeGUID);
 
-            window.ShaderReady = PackageHunter.IsShaderPresent(PackageHunter.PoiyomiShaderName);
+            // window.ShaderReady = PackageHunter.IsShaderPresent(PackageHunter.PoiyomiShaderName);
 
             window.Show();
             window.Focus();

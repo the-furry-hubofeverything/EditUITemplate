@@ -12,7 +12,7 @@ namespace GuloWorkshops.TankWeasel
     {
         public const string VRCFuryPackageName = "com.vrcfury.vrcfury";
 
-        public const string ReadmeGUID = "3bc3db52ac380444f96a82a85041eb0a";
+        // public const string ReadmeGUID = "3bc3db52ac380444f96a82a85041eb0a";
 
         public const string PoiyomiShaderName = ".poiyomi/Poiyomi Toon";
 

@@ -8,12 +8,12 @@ namespace GuloWorkshops.TankWeasel
         /// <summary>
         /// URL for this package's home
         /// </summary>
-        public const string PackageURL = "https://example.com/my-package";
+        public const string PackageURL = "https://hubofeverything.gumroad.com/l/tankweasel";
 
         /// <summary>
         /// URL for developer's profile
         /// </summary>
-        public const string ProfileURL = "https://example.com/about-me";
+        public const string ProfileURL = "https://gulo.dev";
 
         /// <summary>
         /// VRCFury Documentation URL
