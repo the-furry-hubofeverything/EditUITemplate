@@ -26,6 +26,7 @@ namespace GuloWorkshops.TankWeasel
 
         Texture Kofi;
 
+        bool showLicense;
         public bool VRCFuryInstalled = true;
 
         // public bool ReadMeAssetReady = true;
@@ -88,6 +89,22 @@ namespace GuloWorkshops.TankWeasel
                 GUILayout.FlexibleSpace();
                 UIHelpers.DrawUILine(GUI.color);
 
+                GUILayout.Label("Usage License", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+
+                showLicense = EditorGUILayout.Foldout(showLicense, "Show Usage license");
+                if (showLicense) {
+                    GUILayout.Label("Due to this product being a digital product, refunds are NOT possible.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("If you are selling any customizations, modifications, or retextures of the Tank Weasel model, make sure that both you (the artist) and the customer own the model.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("Please don’t claim the Tank Weasel model (or its default textures and assets) as your own work.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("Please don’t resell, redistribute, or share any of the Tank Weasel files. ", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("If you are an asset creator, please find a way to distribute the changes on their own.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("Please ask before using this model for commercial purposes.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("Please do not use this model for anything related to Cryptocurrency or NFTs.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.Label("Please ask before using this model for use in machine learning algorithms, or “AI”, especially (but not limited to) generative models.", instructionsStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
+                    GUILayout.FlexibleSpace();
+                }
+                GUILayout.FlexibleSpace();
+
                 GUILayout.Label("Install VRCFury", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
 
                 if (VRCFuryInstalled)
@@ -137,8 +154,6 @@ namespace GuloWorkshops.TankWeasel
 
                 // The Tank Weasel doesn't have a Poiyomi dependency
 
-                // GUILayout.Label("Section 3 Heading", headingStyle, GUILayout.MaxWidth(UIHelpers.AboutWindowWidth));
-
                 // if (ShaderReady)
                 // {
                 //     UIHelpers.BeginCenter();
@@ -151,13 +166,6 @@ namespace GuloWorkshops.TankWeasel
                 // }
 
                 GUILayout.FlexibleSpace();
-
-                UIHelpers.BeginCenter();
-                    if (GUILayout.Button(new GUIContent("Go to the Gumroad Page", null, UIHelpers.PackageURL), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
-                    {
-                        Application.OpenURL(UIHelpers.PackageURL);
-                    }
-                UIHelpers.EndCenter();
                 UIHelpers.DrawUILine(GUI.color);
 
                 GUILayout.BeginVertical();
@@ -175,6 +183,12 @@ namespace GuloWorkshops.TankWeasel
                         {
                             Application.OpenURL("https://ko-fi.com/hubofeverything");
                         }
+                    UIHelpers.EndCenter();
+                    UIHelpers.BeginCenter();
+                    if (GUILayout.Button(new GUIContent("Go to Product Gumroad Page", null, UIHelpers.PackageURL), GUILayout.Height(32), GUILayout.MaxWidth(UIHelpers.AboutWindowWidth)))
+                    {
+                        Application.OpenURL(UIHelpers.PackageURL);
+                    }
                     UIHelpers.EndCenter();
                     GUILayout.Space(20f);
                 GUILayout.EndVertical();
